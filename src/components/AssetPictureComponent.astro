@@ -1,0 +1,56 @@
+---
+interface Props {
+    imagePath: string;
+    buttonText: string;
+    onClick: (json?: string) => void;
+    altText: string;
+    json?: string;
+}
+
+const { imagePath, buttonText, onClick, altText, json } = Astro.props;
+---
+
+<div class="asset-container">
+    <img src={imagePath} alt={altText} class="asset-picture" />
+    <button class="asset-button" onClick={() => onClick(json)}>{buttonText}</button>
+</div>
+
+<style>
+    .asset-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid #ccc;
+        padding: 20px;
+        margin: 20px;
+        width: 200px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        position: relative;
+    }
+
+    .asset-picture {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        image-rendering: pixelated; /* Ensures the image is displayed with pixelated style */
+    }
+
+    .asset-button {
+        padding: 10px 20px;
+        cursor: pointer;
+        border: none;
+        background-color: #007BFF;
+        color: white;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: bold;
+        margin-top: 10px; /* Additional spacing between the button and the asset box */
+        transition: background-color 0.3s;
+    }
+
+    .asset-button:hover {
+        background-color: #0056b3;
+    }
+</style>

@@ -1,0 +1,80 @@
+---
+title: Asset Library
+description: Collection of assets for game development
+---
+
+import { assets, handleClick } from './assets'; // Adjust the path accordingly
+import AssetPictureComponent from '../../components/AssetPictureComponent.astro';
+
+export default function AssetLibrary() {
+    return (
+        <>
+            <section>
+                <h2>Animations</h2>
+                <div className="assets-grid">
+                    {assets.filter(asset => asset.type === 'animation').map(asset => (
+                        <AssetPictureComponent
+                            key={asset.imagePath}
+                            imagePath={asset.imagePath}
+                            buttonText={asset.buttonText}
+                            altText={asset.altText}
+                            onClick={handleClick}
+                        />
+                    ))}
+                </div>
+
+                <h2>Terrain</h2>
+                <div className="assets-grid">
+                    {assets.filter(asset => asset.type === 'terrain').map(asset => (
+                        <AssetPictureComponent
+                            key={asset.imagePath}
+                            imagePath={asset.imagePath}
+                            buttonText={asset.buttonText}
+                            altText={asset.altText}
+                            onClick={handleClick}
+                        />
+                    ))}
+                </div>
+
+                <h2>Map Objects</h2>
+                <div className="assets-grid">
+                    {assets.filter(asset => asset.type === 'mapObject').map(asset => (
+                        <AssetPictureComponent
+                            key={asset.imagePath}
+                            imagePath={asset.imagePath}
+                            buttonText={asset.buttonText}
+                            altText={asset.altText}
+                            onClick={handleClick}
+                        />
+                    ))}
+                </div>
+            </section>
+
+            <style jsx>{`
+                .assets-grid {
+                    display: flex;
+                    gap: 20px;
+                    flex-wrap: wrap;
+                }
+                section {
+                    padding: 20px;
+                    max-width: 1200px;
+                    margin: 0 auto;
+                }
+
+                h1, h2 {
+                    text-align: left;
+                    margin-bottom: 20px;
+                }
+
+                .asset-container {
+                    margin-bottom: 60px; /* Space between the asset box and the button */
+                }
+
+                .asset-button {
+                    margin-top: 10px; /* Additional spacing between the button and the asset box */
+                }
+            `}</style>
+        </>
+    );
+}
