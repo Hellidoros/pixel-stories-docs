@@ -1,3 +1,11 @@
+export interface Asset {
+    type: string;
+    imagePath: string;
+    buttonText: string;
+    altText: string;
+    json?: string;
+}
+
 export const assets: Asset[] = [
     {
         type: 'terrain',
@@ -220,15 +228,3 @@ export const assets: Asset[] = [
         }`
     }
 ];
-
-export function handleClick(json: string | undefined): void {
-    if (json) {
-        navigator.clipboard.writeText(json).then(() => {
-            alert('JSON copied to clipboard');
-        }).catch(err => {
-            console.error('Failed to copy: ', err);
-        });
-    } else {
-        alert('No JSON data to copy');
-    }
-}

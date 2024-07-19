@@ -3,13 +3,15 @@ title: Asset Library
 description: Collection of assets for game development
 ---
 
-import { assets, handleClick } from './assets'; // Adjust the path accordingly
+import { assets } from './assets'; // Adjust the path accordingly
 import AssetPictureComponent from '../../components/AssetPictureComponent.astro';
 
 export default function AssetLibrary() {
     return (
         <>
             <section>
+                <h1>Assets</h1>
+
                 <h2>Animations</h2>
                 <div className="assets-grid">
                     {assets.filter(asset => asset.type === 'animation').map(asset => (
@@ -18,7 +20,7 @@ export default function AssetLibrary() {
                             imagePath={asset.imagePath}
                             buttonText={asset.buttonText}
                             altText={asset.altText}
-                            onClick={handleClick}
+                            json={asset.json}
                         />
                     ))}
                 </div>
@@ -31,7 +33,7 @@ export default function AssetLibrary() {
                             imagePath={asset.imagePath}
                             buttonText={asset.buttonText}
                             altText={asset.altText}
-                            onClick={handleClick}
+                            json={asset.json}
                         />
                     ))}
                 </div>
@@ -44,7 +46,7 @@ export default function AssetLibrary() {
                             imagePath={asset.imagePath}
                             buttonText={asset.buttonText}
                             altText={asset.altText}
-                            onClick={handleClick}
+                            json={asset.json}
                         />
                     ))}
                 </div>
@@ -52,10 +54,13 @@ export default function AssetLibrary() {
 
             <style jsx>{`
                 .assets-grid {
-                    display: flex;
-                    gap: 20px;
+                    display:
+                            flex;
+                    gap:
+                            20px;
                     flex-wrap: wrap;
                 }
+
                 section {
                     padding: 20px;
                     max-width: 1200px;

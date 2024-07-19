@@ -2,18 +2,36 @@
 interface Props {
     imagePath: string;
     buttonText: string;
-    onClick: (json?: string) => void;
     altText: string;
     json?: string;
 }
 
-const { imagePath, buttonText, onClick, altText, json } = Astro.props;
+const { imagePath, buttonText, altText, json } = Astro.props;
 ---
 
 <div class="asset-container">
     <img src={imagePath} alt={altText} class="asset-picture" />
-    <button class="asset-button" onClick={() => onClick(json)}>{buttonText}</button>
+    <button class="asset-button" data-json={json}>{buttonText}</button>
 </div>
+
+<script>
+    const buttons = document.querySelectorAll('.asset-button');
+
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const json = button.getAttribute('data-json');
+            if (json) {
+                navigator.clipboard.writeText(json).then(() => {
+                    button.textContent = 'Copied'; // Change button text to "Copied"
+                }).catch(err => {
+                    console.error('Failed to copy:', err);
+                });
+            } else {
+                alert('No JSON data to copy');
+            }
+        });
+    });
+</script>
 
 <style>
     .asset-container {
